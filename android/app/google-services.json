@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "979945042721",
+    "project_id": "dentalscan-pro",
+    "storage_bucket": "dentalscan-pro.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:979945042721:android:a0885a5eccd81998cec460",
+        "android_client_info": {
+          "package_name": "com.example.dentalscanpro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRZ8EWSA98Db7tkKxomtatS2gU5anC0ZU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
