@@ -4,7 +4,7 @@ class Doctor {
   final String location;
   final String phone;
   final String email;
-  final Map<String, String> availableAppointments; // Map for available appointments
+  final Map<String, String> timing; // Map for available appointments
   final String image; // Assuming an image field is stored as URL/path in Firestore
 
   Doctor({
@@ -13,7 +13,7 @@ class Doctor {
     required this.location,
     required this.phone,
     required this.email,
-    required this.availableAppointments,
+    required this.timing,
     required this.image,
   });
 
@@ -25,7 +25,7 @@ class Doctor {
       location: data['location'] ?? '',
       phone: data['phone'] ?? '',
       email: data['email'] ?? '',
-      availableAppointments: Map<String, String>.from(data['available_appointments'] ?? {}),
+      timing: Map<String, String>.from(data['timing'] ?? {}),
       image: data['image'] ?? '',
     );
   }
@@ -38,7 +38,7 @@ class Doctor {
       'location': location,
       'phone': phone,
       'email': email,
-      'available_appointments': availableAppointments,
+      'timing': timing,
       'image': image,
     };
   }

@@ -8,7 +8,8 @@ class RegisterScreen extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +44,18 @@ class RegisterScreen extends StatelessWidget {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                        color: Colors.black,
+                        width: 1), // Add border for enabled state
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                        color: Colors.black,
+                        width: 2), // Add border for focused state
+                    borderRadius: BorderRadius.circular(50),
+                  ),
                 ),
               ),
               const SizedBox(height: 16),
@@ -55,6 +68,18 @@ class RegisterScreen extends StatelessWidget {
                   labelText: 'Email',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                        color: Colors.black,
+                        width: 1), // Add border for enabled state
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                        color: Colors.black,
+                        width: 2), // Add border for focused state
+                    borderRadius: BorderRadius.circular(50),
                   ),
                 ),
               ),
@@ -71,6 +96,18 @@ class RegisterScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(30),
                     borderSide: const BorderSide(color: Colors.grey),
                   ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                        color: Colors.black,
+                        width: 1), // Add border for enabled state
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                        color: Colors.black,
+                        width: 2), // Add border for focused state
+                    borderRadius: BorderRadius.circular(50),
+                  ),
                 ),
               ),
               const SizedBox(height: 16),
@@ -86,6 +123,18 @@ class RegisterScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(30),
                     borderSide: const BorderSide(color: Colors.grey),
                   ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                        color: Colors.black,
+                        width: 1), // Add border for enabled state
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                        color: Colors.black,
+                        width: 2), // Add border for focused state
+                    borderRadius: BorderRadius.circular(50),
+                  ),
                 ),
               ),
               const SizedBox(height: 16),
@@ -97,7 +146,8 @@ class RegisterScreen extends StatelessWidget {
                       height: 50,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromRGBO(110, 207, 228, 1),
+                          backgroundColor:
+                              const Color.fromRGBO(110, 207, 228, 1),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
                           ),
@@ -120,22 +170,22 @@ class RegisterScreen extends StatelessWidget {
                       ),
                     )),
               const SizedBox(height: 8),
-              Row(
+              const Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  const Expanded(
+                  Expanded(
                     child: Divider(
                       thickness: 2,
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    padding: EdgeInsets.symmetric(horizontal: 15),
                     child: Text(
                       "OR",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
-                  const Expanded(
+                  Expanded(
                     child: Divider(
                       thickness: 2,
                     ),
@@ -155,14 +205,15 @@ class RegisterScreen extends StatelessWidget {
                   ),
                   side: BorderSide(color: Colors.grey.shade300, width: 1),
                   elevation: 0,
-                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
                 ),
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const FaIcon(FontAwesomeIcons.google, color: Colors.red),
-                    const SizedBox(width: 10),
-                    const Text(
+                    FaIcon(FontAwesomeIcons.google, color: Colors.red),
+                    SizedBox(width: 10),
+                    Text(
                       'Sign Up with Google',
                       style: TextStyle(
                         color: Colors.black,

@@ -1,5 +1,5 @@
-import 'package:dentalscanpro/view/widgets/education/education_card.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class EducationScreen extends StatefulWidget {
   const EducationScreen({super.key});
@@ -39,6 +39,12 @@ class EducationState extends State<EducationScreen> {
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_new_rounded, color: Color.fromARGB(255, 255, 255, 255), size: 28), // Customize icon color and size
+          onPressed: () {
+            Get.back(); 
+          },
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(

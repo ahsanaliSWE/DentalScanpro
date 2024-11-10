@@ -1,5 +1,4 @@
 import 'package:dentalscanpro/view/login_screen.dart';
-import 'package:dentalscanpro/view/navigation_menu.dart';
 import 'package:get/get.dart';
 
 class SplashScreenController extends GetxController{

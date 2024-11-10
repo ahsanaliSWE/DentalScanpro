@@ -11,7 +11,7 @@ class ReminderScreen extends StatefulWidget {
 
 class _ReminderScreenState extends State<ReminderScreen> {
   final TextEditingController _customReminderController = TextEditingController();
-  final ReminderController _reminderController = Get.put(ReminderController('userID')); // Pass user ID
+  final ReminderController _reminderController = Get.put(ReminderController()); // Pass user ID
   bool isSelectionMode = false; // Track selection mode
   Set<String> selectedReminderIds = {}; // Set of selected reminder IDs
 
@@ -19,7 +19,17 @@ class _ReminderScreenState extends State<ReminderScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Set Reminders'),
+        centerTitle: true,
+        title: const Text('Reminders',
+        style: TextStyle(fontWeight: FontWeight.bold),),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_new_rounded, 
+                color: const Color.fromARGB(255, 0, 0, 0), 
+                size: 28), // Customize icon color and size
+          onPressed: () {
+            Get.back(); // Go back to the previous screen
+          },
+        ),
         actions: [
           if (isSelectionMode)
             IconButton(
@@ -46,12 +56,6 @@ class _ReminderScreenState extends State<ReminderScreen> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            const Text(
-              'Reminders',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 10),
-            // Prebuilt Reminders
             Expanded(
               child: Obx(() {
                 return ListView.builder(

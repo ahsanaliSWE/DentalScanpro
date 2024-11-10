@@ -19,6 +19,12 @@ class ScanScreenState extends State<ScanScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Scan Screen"),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_new_rounded, color: const Color.fromARGB(255, 0, 0, 0), size: 28), // Customize icon color and size
+          onPressed: () {
+            Get.back(); // Go back to the previous screen
+          },
+        ),
       ),
       body: Center(
         child: Column(

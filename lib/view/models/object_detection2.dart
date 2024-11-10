@@ -98,7 +98,7 @@ class ObjectDetection {
 
     log('Outlining objects...');
     for (var i = 0; i < numberOfDetections; i++) {
-      if (scoresTensor[i] > 0.2) {
+      if (scoresTensor[i] > 0.1) {
         // Rectangle drawing
         img.drawRect(
           imageInput,

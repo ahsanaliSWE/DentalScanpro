@@ -8,6 +8,38 @@ class LoginScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  void _showResetPasswordDialog(BuildContext context) {
+    final TextEditingController resetEmailController = TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Reset Password"),
+          content: TextField(
+            controller: resetEmailController,
+            decoration: const InputDecoration(
+              labelText: 'Enter your email',
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text("Cancel"),
+            ),
+            TextButton(
+              onPressed: () {
+                authController.resetPassword(resetEmailController.text.trim());
+                Navigator.pop(context);
+              },
+              child: const Text("Send Reset Link"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +70,19 @@ class LoginScreen extends StatelessWidget {
                   fillColor: const Color.fromRGBO(245, 245, 245, 1),
                   labelText: 'Email',
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                        color: Colors.black,
+                        width: 1), // Add border for enabled state
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                        color: Colors.black,
+                        width: 2), // Add border for focused state
+                    borderRadius: BorderRadius.circular(50),
                   ),
                 ),
               ),
@@ -51,8 +95,20 @@ class LoginScreen extends StatelessWidget {
                   fillColor: const Color.fromRGBO(245, 245, 245, 1),
                   labelText: 'Password',
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(50),
                     borderSide: const BorderSide(color: Colors.grey),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                        color: Colors.black,
+                        width: 1), // Add border for enabled state
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                        color: Colors.black,
+                        width: 2), // Add border for focused state
+                    borderRadius: BorderRadius.circular(50),
                   ),
                 ),
               ),
@@ -64,7 +120,8 @@ class LoginScreen extends StatelessWidget {
                       height: 50,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromRGBO(110, 207, 228, 1),
+                          backgroundColor:
+                              const Color.fromRGBO(110, 207, 228, 1),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
                           ),
@@ -87,7 +144,8 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 8),
               TextButton(
                 onPressed: () {
-                  Get.toNamed('/forgetpassword');
+                  _showResetPasswordDialog(
+                      context); // Show reset password dialog
                 },
                 child: const Text(
                   'Forget Password!',
@@ -96,22 +154,22 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Row(
+              const Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  const Expanded(
+                  Expanded(
                     child: Divider(
                       thickness: 2,
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    padding: EdgeInsets.symmetric(horizontal: 15),
                     child: Text(
                       "OR",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
-                  const Expanded(
+                  Expanded(
                     child: Divider(
                       thickness: 2,
                     ),
@@ -121,7 +179,7 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {
-                  authController.googleSignIn();  // Call Google Sign-In
+                  authController.googleSignIn(); // Call Google Sign-In
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
@@ -130,14 +188,15 @@ class LoginScreen extends StatelessWidget {
                   ),
                   side: BorderSide(color: Colors.grey.shade300, width: 1),
                   elevation: 0,
-                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
                 ),
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const FaIcon(FontAwesomeIcons.google, color: Colors.red),
-                    const SizedBox(width: 10),
-                    const Text(
+                    FaIcon(FontAwesomeIcons.google, color: Colors.red),
+                    SizedBox(width: 10),
+                    Text(
                       'Sign In with Google',
                       style: TextStyle(
                         color: Colors.black,

@@ -95,6 +95,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: AppBar(
         title: const Text('Profile'),
         backgroundColor: Colors.lightBlue[200],
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_new_rounded, color: Color.fromARGB(255, 255, 255, 255), size: 28), // Customize icon color and size
+          onPressed: () {
+            Get.back(); // Go back to the previous screen
+          },
+        ),
       ),
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
@@ -117,7 +123,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     controller: nameController,
                     decoration: InputDecoration(
                       labelText: 'Name',
-                      border: OutlineInputBorder(),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -126,7 +134,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     decoration: InputDecoration(
                       labelText: 'Date of Birth',
                       hintText: 'MM/DD/YYYY',
-                      border: OutlineInputBorder(),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
                     ),
                     onTap: () async {
                       DateTime? pickedDate = await showDatePicker(

@@ -1,3 +1,6 @@
+import 'package:dentalscanpro/view/appointement_screen.dart';
+import 'package:dentalscanpro/view/education_screen.dart';
+import 'package:dentalscanpro/view/scan_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dentalscanpro/view/notification_screen.dart';
@@ -33,7 +36,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.lightBlue[200],
-          iconTheme: const IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
         title: const Text(
           'DentalScan Pro',
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
@@ -56,16 +59,15 @@ class HomeScreen extends StatelessWidget {
                 future: getUserName(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Text('Loading...');
+                    return const Text('Loading...');
                   } else if (snapshot.hasError) {
-                    return Text('Error');
+                    return const Text('Error');
                   }
                   return Text(snapshot.data ?? 'User');
                 },
               ),
               accountEmail: Text(user?.email ?? ''),
               currentAccountPicture: CircleAvatar(
-              
                 backgroundImage: NetworkImage(user?.photoURL ??
                     'https://www.example.com/default_profile_pic.jpg'),
               ),
@@ -74,14 +76,14 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.person),
+              leading: const Icon(Icons.person),
               title: const Text('Profile'),
               onTap: () {
                 Get.to(() => ProfileScreen());
               },
             ),
             ListTile(
-              leading: Icon(Icons.exit_to_app),
+              leading: const Icon(Icons.exit_to_app),
               title: const Text('Sign Out'),
               onTap: () {
                 FirebaseAuth.instance.signOut();
@@ -125,19 +127,20 @@ class HomeScreen extends StatelessWidget {
                     FutureBuilder<String>(
                       future: getUserName(),
                       builder: (context, snapshot) {
-                        if (snapshot.connectionState == ConnectionState.waiting) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
                           return const Text('Loading...');
                         } else if (snapshot.hasError) {
                           return const Text('Error');
                         }
                         String userName = snapshot.data ?? 'User';
-                        
+
                         return Text(
                           '${getGreeting()}, $userName',
                           style: const TextStyle(
                               color: Colors.white,
                               fontSize: 25,
-                              fontFamily: 'Arial' ,
+                              fontFamily: 'Arial',
                               fontWeight: FontWeight.bold),
                         );
                       },
@@ -147,26 +150,165 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Get.to(() => ReminderScreen());
-              },
-              child: const Text('Set Reminders'),
-            ),
-            const SizedBox(height: 20),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
-                    'Upcoming Reminders',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                ],
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 50.0, vertical: 20.0),
+              child: Center(
+                child: GridView.count(
+                  crossAxisCount: 2,
+                  shrinkWrap: true,
+                  mainAxisSpacing: 20, // spacing between rows
+                  crossAxisSpacing: 20, // spacing between columns
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        Get.to(() => const ScanScreen());
+                      },
+                      style: ElevatedButton.styleFrom(
+                        elevation: 10,
+                        backgroundColor: Colors
+                            .lightBlue[200], // Blue background for the button
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 20.0,
+                          horizontal: 20.0,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                      ),
+                      child: const Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.search_rounded, // Use any icon you want
+                            color: Colors.white, // White color for the icon
+                            size: 40,
+                          ),
+                          SizedBox(
+                              height: 8), // Space between icon and text
+                          Text(
+                            'Scan',
+                            style: TextStyle(
+                              color: Colors.white, // White color for the text
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Get.to(() => AppointmentScreen());
+                      },
+                      style: ElevatedButton.styleFrom(
+                        elevation: 10,
+                        backgroundColor: Colors
+                            .lightBlue[200], // Blue background for the button
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 20.0,
+                          horizontal: 20.0,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                      ),
+                      child: const Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.schedule, // Use any icon you want
+                            color: Colors.white, // White color for the icon
+                            size: 40,
+                          ),
+                          SizedBox(
+                              height: 8), // Space between icon and text
+                          Text(
+                            'Appointment',
+                            style: TextStyle(
+                              color: Colors.white, // White color for the text
+                              fontSize: 15,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Get.to(() => ReminderScreen());
+                      },
+                      style: ElevatedButton.styleFrom(
+                        elevation: 10,
+                        backgroundColor: Colors
+                            .lightBlue[200], // Blue background for the button
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 20.0,
+                          horizontal: 20.0,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                      ),
+                      child: const Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.notification_add, // Use any icon you want
+                            color: Colors.white, // White color for the icon
+                            size: 40,
+                          ),
+                          SizedBox(
+                              height: 8), // Space between icon and text
+                          Text(
+                            'Reminders',
+                            style: TextStyle(
+                              color: Colors.white, // White color for the text
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                         Get.to(() => const EducationScreen());
+                      },
+                      style: ElevatedButton.styleFrom(
+                        elevation: 10,
+                        backgroundColor: Colors
+                            .lightBlue[200], // Blue background for the button
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 20.0,
+                          horizontal: 20.0,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                      ),
+                      child: const Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.menu_book_rounded, // Use any icon you want
+                            color: Colors.white, // White color for the icon
+                            size: 40,
+                          ),
+                          SizedBox(
+                              height: 8), // Space between icon and text
+                          Text(
+                            'Educational Resources',
+                            style: TextStyle(
+                              color: Colors.white, // White color for the text
+                              fontSize: 15,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-            // You can add the reminders list or other components here
           ],
         ),
       ),

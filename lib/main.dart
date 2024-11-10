@@ -1,47 +1,21 @@
-import 'dart:io';
 import 'dart:ui';
-import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:dentalscanpro/api/firebase_api.dart';
 import 'package:dentalscanpro/firebase_options.dart';
 import 'package:dentalscanpro/routes/routes.dart';
-import 'package:dentalscanpro/view/home_screen.dart';
-import 'package:dentalscanpro/view/login_screen.dart';
 import 'package:dentalscanpro/view/splash_screen.dart';
-import 'package:dentalscanpro/view/models/yolocam.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'utils/notification_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   DartPluginRegistrant.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  await FirebaseApi().initNotifications();
-  AwesomeNotifications().initialize(
-    'resource://drawable/res_app_icon',
-    [
-      NotificationChannel(
-        channelKey: 'reminder_channel',
-        channelName: 'Reminder Notifications',
-        channelDescription: 'Channel for Reminder Notifications',
-        importance: NotificationImportance.High,
-        defaultColor: Colors.blue,
-        ledColor: Colors.white,
-        playSound: true,
-      )
-    ],
-    debug: true,
-  );
-  // Request notification permissions
-  bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
-  if (!isAllowed) {
-    // Request user permission
-    await AwesomeNotifications().requestPermissionToSendNotifications();
-  }
-  sendTestNotification();
+  await NotificationService.initialize();
+
   runApp(const MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -52,23 +26,79 @@ class MyApp extends StatelessWidget {
       title: 'DentalScan Pro',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.lightBlue, // Main theme color
+        scaffoldBackgroundColor: Colors.white,
+        dialogTheme: DialogTheme(
+          backgroundColor: Colors.white, // Background color of dialogs
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          titleTextStyle: const TextStyle(
+            color: Colors.black,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+          contentTextStyle: const TextStyle(
+            color: Colors.black,
+            fontSize: 16,
+          ),
+        ),        
+        datePickerTheme: DatePickerThemeData(
+          backgroundColor: Colors.lightBlue[50],
+          headerBackgroundColor: Colors.lightBlue[200],
+          dayStyle: TextStyle(color: Colors.black),
+          ),
+        timePickerTheme: TimePickerThemeData(
+          backgroundColor: Colors.lightBlue[50],
+          dialHandColor: Colors.lightBlue[200],
+          dialBackgroundColor: Colors.lightBlue[100],
+          entryModeIconColor: Colors.black,
+          hourMinuteColor: Colors.lightBlue[200],
+          hourMinuteTextColor: Colors.white,
+        ),
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            foregroundColor: Colors.black, // Color for Text Buttons
+            textStyle: const TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+                color:
+                    Color.fromARGB(255, 0, 0, 0)), // Border color when enabled
+            borderRadius: BorderRadius.circular(8),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+                color:
+                    Color.fromARGB(255, 0, 0, 0)), // Border color when focused
+            borderRadius: BorderRadius.circular(8),
+          ),
+          labelStyle: const TextStyle(
+              color: Color.fromARGB(255, 0, 0, 0)), // Label color
+          hintStyle: const TextStyle(
+              color: Color.fromARGB(255, 0, 0, 0)), // Hint text color
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.lightBlue[200], // Button background color
+            foregroundColor: Colors.white, // Button text color
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+        ),
+        textSelectionTheme: const TextSelectionThemeData(
+            cursorColor: Color.fromARGB(255, 0, 0, 0)),
+        progressIndicatorTheme: ProgressIndicatorThemeData(
+          color: Colors.lightBlue[200], // CircularProgressIndicator color
+        ),
       ),
       home: const SplashScreen(),
       getPages: AppRoutes.appRoutes(),
     );
   }
-}
-
-void sendTestNotification() async {
-  await AwesomeNotifications().createNotification(
-    content: NotificationContent(
-      id: 1, // Unique ID for the notification
-      channelKey: 'reminder_channel',
-      title: 'Test Reminder',
-      body: 'This is a test notification to verify the setup.',
-      notificationLayout: NotificationLayout.Default,
-    ),
-  );
 }

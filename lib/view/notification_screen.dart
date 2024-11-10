@@ -1,35 +1,59 @@
-import 'package:dentalscanpro/view_models/controller/notification/notification_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:intl/intl.dart';
 
 class NotificationsScreen extends StatelessWidget {
-  final NotificationController _notificationController = Get.put(NotificationController());
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('All Notifications'),
+        centerTitle: true,
+        title: const Text('All Notifications',style: TextStyle(fontWeight: FontWeight.bold)),
       ),
-      body: Obx(() {
-        return ListView.builder(
-          itemCount: _notificationController.notifications.length,
-          itemBuilder: (context, index) {
-            final notification = _notificationController.notifications[index];
-            return ListTile(
-              title: Text(notification.title ?? 'No Title'),
-              subtitle: Text(notification.body ?? 'No Body'),
-              trailing: Text(notification.source), // Show the source (reminder/push)
-              leading: Icon(
-                notification.source == 'reminder' ? Icons.alarm : Icons.notifications,
-              ),
-              onTap: () {
-                // Optional: Navigate to a detailed view of the notification
-              },
-            );
-          },
-        );
-      }),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: _firestore
+            .collection('users')
+            .doc(_auth.currentUser?.uid)
+            .collection('notifications')
+            .orderBy('timestamp', descending: true) // Order by latest notifications
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+            return const Center(child: Text("No notifications available."));
+          }
+
+          final notifications = snapshot.data!.docs;
+
+          return ListView.builder(
+            itemCount: notifications.length,
+            itemBuilder: (context, index) {
+              var notification = notifications[index];
+              var title = notification['title'] ?? "No Title";
+              var body = notification['body'] ?? "No Details";
+              var timestamp = notification['timestamp']?.toDate();
+              var formattedTime = timestamp != null
+                  ? DateFormat.yMMMd().add_jm().format(timestamp)
+                  : "No Time";
+
+              return Card(
+                margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                child: ListTile(
+                  title: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
+                  subtitle: Text(body),
+                  trailing: Text(formattedTime, style: TextStyle(fontSize: 12, color: Color.fromARGB(255, 0, 0, 0))),
+                ),
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }

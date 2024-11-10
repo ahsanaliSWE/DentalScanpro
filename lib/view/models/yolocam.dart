@@ -129,7 +129,7 @@ class _YoloCamState extends State<YoloCam> {
     //   format: Format.coreml,
     //   modelPath: modelPath,
     // );
-    final modelPath = await _copy('assets/models/coco_yolov8n_int8.tflite');
+    final modelPath = await _copy('assets/images/coco_yolov8n_int8.tflite');
     final metadataPath = await _copy('assets/labels/metadata_coco.yaml');
     final model = LocalYoloModel(
       id: '',

@@ -3,10 +3,9 @@
 class RouteName {
 
     static const String SplashScreen = '/splash_screen';
-    static const String NavigationMenu = '/nav_menu';
     static const String LoginScreen = '/login';
     static const String RegisterScreen = '/register';
-    static const String HomeScreen = '/home_screen';
+    static const String HomeScreen = '/home';
     static const String ScanScreen = '/scan_screen';
     static const String ScanResultScreen = '/scan_result_screen';
     static const String ScanResultDetailScreen = '/scan_result_detail_screen';

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -20,7 +21,7 @@ class AuthController extends GetxController {
     firebaseUser.bindStream(_auth.authStateChanges());
     firebaseUser.listen((user) {
       if (user != null) {
-        Get.offAllNamed('/nav_menu'); 
+        Get.offAllNamed('/home'); 
       }
     });
   }
@@ -40,7 +41,7 @@ class AuthController extends GetxController {
       'created_at': Timestamp.now(),
     });
     Get.snackbar('Success', 'Registration Successful');
-    Get.offAllNamed('/nav_menu');  
+    Get.offAllNamed('/home');  
   } catch (e) {
     Get.snackbar('Error', e.toString());
   } finally {
@@ -55,7 +56,7 @@ class AuthController extends GetxController {
       isLoading.value = true;
       await _auth.signInWithEmailAndPassword(email: email, password: password);
       Get.snackbar('Success', 'Login Successful');
-      Get.offAllNamed('/nav_menu');
+      Get.offAllNamed('/home');
      
     } catch (e) {
       Get.snackbar('Error', e.toString());
@@ -78,13 +79,21 @@ class AuthController extends GetxController {
     }
   }
 
-  // Password Reset
-  Future<void> resetPassword(String email) async {
+   void resetPassword(String email) async {
+    isLoading.value = true;
     try {
       await _auth.sendPasswordResetEmail(email: email);
-      Get.snackbar('Success', 'Password Reset Email Sent');
+      Get.snackbar('Password Reset', 'Password reset email sent successfully.',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.green,
+          colorText: Colors.white);
     } catch (e) {
-      Get.snackbar('Error', e.toString());
+      Get.snackbar('Error', e.toString(),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white);
+    } finally {
+      isLoading.value = false;
     }
   }
 
@@ -201,8 +210,6 @@ Future<void> googleSignIn() async {
     } catch (e) {
       Get.snackbar('Error', e.toString());
     }
-  }
-
-  
+  }  
 }
 

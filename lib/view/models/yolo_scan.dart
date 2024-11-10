@@ -224,9 +224,9 @@ class _YoloVideoState extends State<YoloVideo> {
         bytesList: cameraImage.planes.map((plane) => plane.bytes).toList(),
         imageHeight: cameraImage.height,
         imageWidth: cameraImage.width,
-        iouThreshold: 0.5 ,
-        confThreshold: 0.2,
-        classThreshold: 0.1);
+        iouThreshold: 0.01,
+        confThreshold: 0.1,
+        classThreshold: 0.01);
     if (result.isNotEmpty) {
       setState(() {
         yoloResults = result;
