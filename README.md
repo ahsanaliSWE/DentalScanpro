@@ -78,22 +78,31 @@ The app integrates cutting-edge models like **MobileNet V2**, **ResNet 50**, **E
 
 📹 **Watch the App in Action**: [App Working Demo](video/demo.mp4)
 
+https://github.com/user-attachments/assets/5cc820df-8b56-41c1-9306-73a3f670ad57
+
+
+
 ---
 
 ## **Group Members**
 
-| **Name**             | **Role**                 | 
-|-----------------------|--------------------------|
-| *Your Name*           | Developer/Researcher    |
-| *Teammate Name*       | Co-Developer/Researcher |
+| **Name**              | **Roll Number**  | **Role**             |
+|-----------------------|------------------|----------------------|
+| *Ahsan Ali*           | 20SW135          | Developer/Researcher |
+| *Hira Khuwaja*        | 20SW025          | Project Lead         |
 
 ---
 
 ## **Supervisor**
 
-**Dr. Yasmeen Naz Panhwar**  
+**Dr. Rabeea Jaffri**  
 Department of Software Engineering  
-[Your University Name]  
+Mehran University of Engineering and Technology 
+
+## **Co-Supervisor**
+
+**Dr. Shewar Javed**  
+
 
 ---
 
@@ -107,5 +116,5 @@ Department of Software Engineering
 ### **Steps**
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/dental-scan-pro.git
-   cd dental-scan-pro
+   git clone https://github.com/ahsanaliSWE/DentalScanpro.git
+   cd DentalScanpro
