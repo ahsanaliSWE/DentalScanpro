@@ -47,20 +47,28 @@ The app integrates cutting-edge models like **MobileNet V2**, **ResNet 50**, **E
 ## **Screenshots**
 
 ### **1. Splash Screen**
-
-
+<img src="https://github.com/ahsanaliSWE/DentalScanpro/blob/main/screenshots/Splash%20Screen.jpeg" alt="Login Screen" width="270" height="600"/>
 
 ### **2. Login Screen**
 <img src="https://github.com/ahsanaliSWE/DentalScanpro/blob/main/screenshots/Login%20Screen.jpeg" alt="Login Screen" width="270" height="600"/>
 
 ### **3. Home Screen**
-![Home Screen](screenshots/home_screen.png)
+<img src="https://github.com/ahsanaliSWE/DentalScanpro/blob/main/screenshots/Home%20Screen.jpeg" alt="Home Screen" width="270" height="600"/>
 
-### **2. Detection Screen**
-![Detection Screen](screenshots/detection_screen.png)
+### **4. Image Detection**
+<img src="https://github.com/ahsanaliSWE/DentalScanpro/blob/main/screenshots/Image%20Detection.jpeg" alt="Image Detection" width="270" height="600"/>
 
-### **3. Analysis Result**
-![Result Analysis](screenshots/analysis_screen.png)
+### **5. Real-time Detection**
+<img src="https://github.com/ahsanaliSWE/DentalScanpro/blob/main/screenshots/Real-time%20Detection.jpeg" alt="Real-time Detection" width="270" height="600"/>
+
+### **6. Locate Doctor**
+<img src="https://github.com/ahsanaliSWE/DentalScanpro/blob/main/screenshots/Locate%20Doctor.jpeg" alt="Locate Doctor" width="270" height="600"/>
+
+### **7. Doctor Detail**
+<img src="https://github.com/ahsanaliSWE/DentalScanpro/blob/main/screenshots/Doctor%20Detail.jpeg" alt="Doctor Detail" width="270" height="600"/>
+
+### **8. Reminder Screen**
+<img src="https://github.com/ahsanaliSWE/DentalScanpro/blob/main/screenshots/Reminder%20Screen.jpeg" alt="Reminder Screen" width="270" height="600"/>
 
 ###
 
