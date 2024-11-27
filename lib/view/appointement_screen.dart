@@ -12,10 +12,10 @@ class AppointmentScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Appointment Screen',
+          'Locate Doctors',
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.lightBlue[200],
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white, size: 28),
           onPressed: () {
@@ -31,16 +31,16 @@ class AppointmentScreen extends StatelessWidget {
               onChanged: (value) => controller.filterDoctors(value),
               decoration: InputDecoration(
                 hintText: 'Search for a doctor',
-                prefixIcon: const Icon(Icons.search, color: Colors.blueAccent),
+                prefixIcon: Icon(Icons.search, color: Colors.lightBlue[200]),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.blueAccent, width: 1),
+                  borderSide: const BorderSide(color: Colors.lightBlueAccent, width: 1),
                   borderRadius: BorderRadius.circular(30),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.blueAccent, width: 2),
+                  borderSide: const BorderSide(color: Colors.lightBlueAccent, width: 2),
                   borderRadius: BorderRadius.circular(30),
                 ),
               ),
@@ -53,7 +53,7 @@ class AppointmentScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   var doctor = controller.filteredDoctors[index];
                   return Card(
-                    color: Colors.blueAccent[100],
+                    color: Colors.lightBlue[200],
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
@@ -130,7 +130,7 @@ class DoctorDetailScreen extends StatelessWidget {
           doctor.name,
           style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.lightBlue[200],
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Padding(
@@ -145,17 +145,17 @@ class DoctorDetailScreen extends StatelessWidget {
             const SizedBox(height: 16),
             Text(
               doctor.name,
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blueAccent),
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.lightBlue),
               textAlign: TextAlign.center,
             ),
             Text(
               doctor.specialty,
-              style: const TextStyle(fontSize: 18, color: Colors.grey),
+              style: const TextStyle(fontSize: 18, color: Colors.black),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 24),
             Card(
-              color: Colors.blueAccent[100],
+              color: Colors.lightBlueAccent[100],
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),
               ),
@@ -197,21 +197,21 @@ class DoctorDetailScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.blueAccent,
+                color: Colors.lightBlue[200],
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    'Available Appointments:',
+                    'Timing:',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
                   ),
                   const SizedBox(height: 8),
                   ...doctor.timing.entries.map((entry) {
                     return Text(
                       '${entry.key}: ${entry.value}',
-                      style: const TextStyle(fontSize: 16, color: Colors.white70),
+                      style: const TextStyle(fontSize: 16, color: Colors.white),
                     );
                   }).toList(),
                 ],

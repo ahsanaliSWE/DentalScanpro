@@ -1,6 +1,5 @@
 import 'package:dentalscanpro/view/appointement_screen.dart';
 import 'package:dentalscanpro/view/education_screen.dart';
-import 'package:dentalscanpro/view/scan_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dentalscanpro/view/notification_screen.dart';
@@ -8,6 +7,8 @@ import 'package:dentalscanpro/view/reminder_screen.dart';
 import 'package:dentalscanpro/view/profile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'models/yolo_scan.dart';
 
 class HomeScreen extends StatelessWidget {
   final User? user = FirebaseAuth.instance.currentUser;
@@ -163,7 +164,7 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        Get.to(() => const ScanScreen());
+                        Get.to(() => const YoloVision());
                       },
                       style: ElevatedButton.styleFrom(
                         elevation: 10,

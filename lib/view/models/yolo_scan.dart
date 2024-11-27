@@ -17,8 +17,8 @@ main() async {
   DartPluginRegistrant.ensureInitialized();
   runApp(
     const MaterialApp(
-    //  home: MyApp(),
-    ),
+        //  home: MyApp(),
+        ),
   );
 }
 
@@ -41,7 +41,6 @@ class _YoloVisionState extends State<YoloVision> {
   @override
   void dispose() async {
     super.dispose();
-    await vision.closeTesseractModel();
     await vision.closeYoloModel();
   }
 
@@ -78,7 +77,6 @@ class _YoloVisionState extends State<YoloVision> {
               });
             },
           ),
-          
           SpeedDialChild(
             child: const Icon(Icons.camera),
             backgroundColor: Colors.blue,
@@ -91,7 +89,6 @@ class _YoloVisionState extends State<YoloVision> {
               });
             },
           ),
-          
         ],
       ),
     );
@@ -131,7 +128,7 @@ class _YoloVideoState extends State<YoloVideo> {
 
   init() async {
     cameras = await availableCameras();
-    controller = CameraController(cameras[0], ResolutionPreset.medium);
+    controller = CameraController(cameras[0], ResolutionPreset.veryHigh);
     controller.initialize().then((value) {
       loadYoloModel().then((value) {
         setState(() {
@@ -178,7 +175,7 @@ class _YoloVideoState extends State<YoloVideo> {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(
-                  width: 5, color: Colors.white, style: BorderStyle.solid),
+                  width: 5, color: Color.fromARGB(255, 143, 210, 241), style: BorderStyle.solid),
             ),
             child: isDetecting
                 ? IconButton(
@@ -195,9 +192,9 @@ class _YoloVideoState extends State<YoloVideo> {
                     onPressed: () async {
                       await startDetection();
                     },
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.play_arrow,
-                      color: Colors.white,
+                      color: Colors.lightBlue[200],
                     ),
                     iconSize: 50,
                   ),
@@ -279,7 +276,7 @@ class _YoloVideoState extends State<YoloVideo> {
             style: TextStyle(
               background: Paint()..color = colorPick,
               color: Colors.white,
-              fontSize: 18.0,
+              fontSize: 12.0,
             ),
           ),
         ),
@@ -287,7 +284,6 @@ class _YoloVideoState extends State<YoloVideo> {
     }).toList();
   }
 }
-
 
 class YoloImageV8 extends StatefulWidget {
   final FlutterVision vision;
@@ -395,6 +391,8 @@ class _YoloImageV8State extends State<YoloImageV8> {
     if (result.isNotEmpty) {
       setState(() {
         yoloResults = result;
+        // print(result);
+        print(yoloResults);
       });
     }
   }
@@ -427,7 +425,7 @@ class _YoloImageV8State extends State<YoloImageV8> {
             style: TextStyle(
               background: Paint()..color = colorPick,
               color: Colors.white,
-              fontSize: 18.0,
+              fontSize: 12.0,
             ),
           ),
         ),

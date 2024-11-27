@@ -9,24 +9,83 @@ class EducationScreen extends StatefulWidget {
 }
 
 class EducationState extends State<EducationScreen> {
-
-  Widget buildButton(IconData icon, String label) {
+   Widget buildCard(String title, IconData icon, String description,
+      Color color, Function() onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        elevation: 5,
+        shadowColor: Colors.grey.withOpacity(0.5),
+        child: Container(
+          padding: const EdgeInsets.all(16.0),
+          decoration: BoxDecoration(
+            color: color.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  CircleAvatar(
+                    radius: 24,
+                    backgroundColor: color,
+                    child: Icon(icon, color: Colors.white, size: 28),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Text(
+                      title,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: color,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              Text(
+                description,
+                style: const TextStyle(fontSize: 16),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+  // Helper method to create buttons
+  Widget buildButton(IconData icon, String label, Color color) {
     return Column(
       children: [
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.snackbar("Info", "You clicked on $label!");
+          },
           style: ElevatedButton.styleFrom(
+            backgroundColor: color,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),
-            fixedSize: const Size(60, 60), // Adjust size as needed
+            fixedSize: const Size(60, 60),
           ),
-          child: Icon(icon, size: 24),
+          child: Icon(icon, size: 24, color: Colors.white),
         ),
         const SizedBox(height: 5),
         Text(label),
       ],
     );
+  }
+  
+   void navigateToDetails(String title) {
+    Get.to(() => DetailScreen(title: title));
   }
 
   @override
@@ -40,15 +99,17 @@ class EducationState extends State<EducationScreen> {
         ),
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new_rounded, color: Color.fromARGB(255, 255, 255, 255), size: 28), // Customize icon color and size
+          icon: const Icon(Icons.arrow_back_ios_new_rounded,
+              color: Colors.white, size: 28),
           onPressed: () {
-            Get.back(); 
+            Get.back();
           },
         ),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
+            // Top Section with Buttons
             Container(
               width: double.infinity,
               height: 300,
@@ -68,7 +129,6 @@ class EducationState extends State<EducationScreen> {
                 ],
               ),
               child: Container(
-                height: 280,
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                 decoration: BoxDecoration(
@@ -81,26 +141,61 @@ class EducationState extends State<EducationScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        buildButton(Icons.abc, "Button 1"),
-                        buildButton(Icons.abc, "Button 2"),
-                        buildButton(Icons.abc, "Button 3"),
-                        buildButton(Icons.abc, "Button 4"),
+                        buildButton(Icons.book, "Research", Colors.lightBlueAccent),
+                        buildButton(Icons.video_library, "Videos", Colors.lightBlueAccent),
+                        buildButton(Icons.article, "Articles", Colors.lightBlueAccent),
+                        buildButton(Icons.quiz, "Quiz", Colors.lightBlueAccent),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        buildButton(Icons.abc, "Button 5"),
-                        buildButton(Icons.abc, "Button 6"),
-                        buildButton(Icons.abc, "Button 7"),
-                        buildButton(Icons.abc, "Button 8"),
+                        buildButton(Icons.report, "Reports", Colors.lightBlueAccent),
+                        buildButton(Icons.school, "Courses", Colors.lightBlueAccent),
+                        buildButton(Icons.web, "Websites", Colors.lightBlueAccent),
+                        buildButton(Icons.forum, "Forums", Colors.lightBlueAccent),
                       ],
                     ),
                   ],
                 ),
               ),
             ),
+
             const SizedBox(height: 20),
+
+            buildCard(
+                "Research Insights",
+                Icons.search,
+                "Explore advanced dental care research powered by AI and deep learning techniques.",
+                Colors.blue,
+                () => navigateToDetails("Research Insights"),
+              ),
+              const SizedBox(height: 20),
+              buildCard(
+                "Dental Care Tips",
+                Icons.health_and_safety,
+                "Essential tips to maintain oral hygiene and prevent dental caries effectively.",
+                Colors.green,
+                () => navigateToDetails("Dental Care Tips"),
+              ),
+              const SizedBox(height: 20),
+              buildCard(
+                "Educational Videos",
+                Icons.video_library,
+                "Watch curated videos to understand dental care and treatment processes better.",
+                Colors.orange,
+                () => navigateToDetails("Educational Videos"),
+              ),
+              const SizedBox(height: 20),
+              buildCard(
+                "Interactive Quizzes",
+                Icons.quiz,
+                "Test your knowledge on dental health through fun and interactive quizzes.",
+                Colors.purple,
+                () => navigateToDetails("Interactive Quizzes"),
+              ),
+
+            // Dental Care Tips Section
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Card(
@@ -114,6 +209,7 @@ class EducationState extends State<EducationScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      
                       Text(
                         'Dental Care Tips & Tricks',
                         style: TextStyle(
@@ -129,7 +225,7 @@ class EducationState extends State<EducationScreen> {
                       ),
                       const SizedBox(height: 10),
                       const Text(
-                        '2. Use fluoride toothpaste to help strengthen tooth enamel and prevent decay.',
+                        '2. Use fluoride toothpaste to strengthen enamel and prevent decay.',
                         style: TextStyle(fontSize: 16),
                       ),
                       const SizedBox(height: 10),
@@ -152,7 +248,30 @@ class EducationState extends State<EducationScreen> {
                 ),
               ),
             ),
+
+            const SizedBox(height: 20),
           ],
+        ),
+      ),
+    );
+  }
+}
+class DetailScreen extends StatelessWidget {
+  final String title;
+
+  const DetailScreen({super.key, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
+        backgroundColor: Colors.lightBlue[200],
+      ),
+      body: Center(
+        child: Text(
+          "Detailed content for $title.",
+          style: const TextStyle(fontSize: 18),
         ),
       ),
     );
