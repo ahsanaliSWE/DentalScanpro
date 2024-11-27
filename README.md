@@ -47,7 +47,8 @@ The app integrates cutting-edge models like **MobileNet V2**, **ResNet 50**, **E
 ## **Screenshots**
 
 ### **1. Splash Screen**
-![Login Screen](https://github.com/ahsanaliSWE/DentalScanpro/blob/main/screenshots/Login%20Screen.jpeg)
+<img src="https://github.com/ahsanaliSWE/DentalScanpro/blob/main/screenshots/Login%20Screen.jpeg" alt="Login Screen" width="500" height="300"/>
+
 
 ### **2. Login Screen**
 
