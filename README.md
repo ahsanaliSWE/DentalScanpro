@@ -76,7 +76,8 @@ The app integrates cutting-edge models like **MobileNet V2**, **ResNet 50**, **E
 
 ## **Demo Video**
 
-📹 **Watch the App in Action**: [App Working Demo] (https://github.com/user-attachments/assets/5cc820df-8b56-41c1-9306-73a3f670ad57)
+📹 **Watch the App in Action**: [App Working Demo](video/demo.mp4) 
+https://github.com/user-attachments/assets/5cc820df-8b56-41c1-9306-73a3f670ad57
 
 
 
