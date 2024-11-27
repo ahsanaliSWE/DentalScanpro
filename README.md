@@ -46,7 +46,12 @@ The app integrates cutting-edge models like **MobileNet V2**, **ResNet 50**, **E
 
 ## **Screenshots**
 
-### **1. Home Screen**
+### **1. Splash Screen**
+![Splash Screen](screenshots/Login Screen.jpeg)
+
+### **2. Login Screen**
+
+### **3. Home Screen**
 ![Home Screen](screenshots/home_screen.png)
 
 ### **2. Detection Screen**
@@ -54,6 +59,8 @@ The app integrates cutting-edge models like **MobileNet V2**, **ResNet 50**, **E
 
 ### **3. Analysis Result**
 ![Result Analysis](screenshots/analysis_screen.png)
+
+###
 
 ---
 
