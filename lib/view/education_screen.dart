@@ -218,7 +218,7 @@ class EducationState extends State<EducationScreen> {
                           color: Colors.lightBlue[800],
                         ),
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 11),
                       const Text(
                         '1. Brush your teeth twice a day for at least two minutes each time.',
                         style: TextStyle(fontSize: 16),
