@@ -94,14 +94,14 @@ https://github.com/user-attachments/assets/5cc820df-8b56-41c1-9306-73a3f670ad57
 
 ## **Supervisor**
 
-**Dr. Rabeea Jaffri**  
+**Dr. Rabeea Jaffari**  
 Department of Software Engineering  
-Mehran University of Engineering and Technology 
+Mehran University of Engineering and Technology, Jamshoro
 
 ## **Co-Supervisor**
 
-**Dr. Shewar Javed**  
-
+**Dr. Shehwar Javed**  
+Altamash General Hospital, Karachi
 
 ---
 
