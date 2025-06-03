@@ -80,7 +80,14 @@ The app integrates cutting-edge models like **MobileNet V2**, **ResNet 50**, **E
 https://github.com/user-attachments/assets/5cc820df-8b56-41c1-9306-73a3f670ad57
 
 
+---
 
+## 📰 **Publication**
+
+This project is officially published in:
+🦷 **AI-Powered Dental Caries Detection**
+Presented/Published in 2024 26th International Multi-Topic Conference (INMIC)
+Read the full paper here: https://ieeexplore.ieee.org/document/11004399
 ---
 
 ## **Group Members**
